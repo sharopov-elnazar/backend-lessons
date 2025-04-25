@@ -1,4 +1,4 @@
-<?php include 'students.php'; ?>
+<?php include 'data.php'; ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -51,6 +51,7 @@
         <div class="student">
             <h3>Name: <?= $student['name'] ?></h3>
             <h3>Course: <?= $student['course'] ?></h3>
+            <h4>Count grades: <?= count($student['grades']) ?></h4>
             <a class="btn" href="student.php?id=<?= $student['id'] ?>">Batafsil</a>
         </div>
     <?php endforeach; ?>

@@ -1,5 +1,5 @@
 <?php
-include 'students.php';
+include 'data.php';
 
 $id = $_GET['id'] ?? null;
 $student = array_values(array_filter($students, fn($s) => $s['id'] == $id))[0] ?? null;
@@ -24,6 +24,16 @@ $student = array_values(array_filter($students, fn($s) => $s['id'] == $id))[0] ?
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             max-width: 600px;
             margin: auto;
+            text-align: center;
+        }
+
+        .profile-img {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+            border: 4px solid #3f51b5;
         }
 
         h2 {
@@ -73,13 +83,14 @@ $student = array_values(array_filter($students, fn($s) => $s['id'] == $id))[0] ?
 
     <div class="card">
         <?php if ($student): ?>
-            <h2>Details for: <?= $student['name'] ?></h2>
+            <img src="<?= $student['image'] ?? 'images/default.png' ?>" alt="Profile Image" class="profile-img">
+            <h2><?= $student['name'] ?></h2>
             <p><strong>Course:</strong> <?= $student['course'] ?></p>
             <p><strong>Group:</strong> <?= $student['group'] ?></p>
             <p><strong>Major:</strong> <?= $student['major'] ?></p>
 
             <?php if (!empty($student['grades'])): ?>
-                <h3>Grades:</h3>
+                <h3>📘 Grades</h3>
                 <table>
                     <tr>
                         <th>Subject</th>
@@ -94,7 +105,7 @@ $student = array_values(array_filter($students, fn($s) => $s['id'] == $id))[0] ?
                 </table>
             <?php endif; ?>
 
-            <a href="index.php">⬅️ Back to list</a>
+            <a href="./">⬅️ Back to list</a>
         <?php else: ?>
             <h2 style="color:red;">Student not found 😕</h2>
         <?php endif; ?>
