@@ -1,5 +1,5 @@
-<?php include 'header.php'; ?>
+<?php include './pages/header.php'; ?>
 
-<h1>salom</h1>
+<h1>Salom</h1>
 
-<?php include 'footer.php'; ?>
+<?php include './pages/footer.php'; ?>
