@@ -50,6 +50,7 @@
     <?php foreach ($students as $student): ?>
         <div class="student">
             <h3>Name: <?= $student['name'] ?></h3>
+            <h3>Course: <?= $student['course'] ?></h3>
             <a class="btn" href="student.php?id=<?= $student['id'] ?>">Batafsil</a>
         </div>
     <?php endforeach; ?>

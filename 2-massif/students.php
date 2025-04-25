@@ -6,41 +6,47 @@ $students = [
         'name' => 'Iqbolshoh Ilhomjonov',
         'course' => 3,
         'group' => 'SE-01',
-        'major' => 'Software Engineering'
+        'major' => 'Software Engineering',
+        'grades' => [
+            'Math' => 98,
+            'Physics' => 91,
+            'Programming' => 100,
+        ]
     ],
     [
         'id' => 2,
         'name' => 'Zuhro Karimova',
         'course' => 2,
         'group' => 'SE-02',
-        'major' => 'Web Development'
+        'major' => 'Web Development',
+        'grades' => [
+            'HTML' => 85,
+            'CSS' => 90,
+            'JavaScript' => 87,
+        ]
     ],
     [
         'id' => 3,
         'name' => 'Amirbek Toshpulatov',
         'course' => 4,
         'group' => 'CS-01',
-        'major' => 'Cybersecurity'
+        'major' => 'Cybersecurity',
+        'grades' => [
+            'Networks' => 88,
+            'Linux' => 93,
+            'Cryptography' => 92,
+        ]
     ],
     [
         'id' => 4,
         'name' => 'Shahnoza Mahmudova',
         'course' => 1,
         'group' => 'AI-01',
-        'major' => 'Artificial Intelligence'
+        'major' => 'Artificial Intelligence',
+        'grades' => [
+            'Python' => 89,
+            'ML Basics' => 90,
+            'Logic' => 95,
+        ]
     ],
-    [
-        'id' => 4,
-        'name' => 'Shahnoza Mahmudova',
-        'course' => 1,
-        'group' => 'AI-01',
-        'major' => 'Artificial Intelligence'
-    ],
-    [
-        'id' => 4,
-        'name' => 'Shahnoza Mahmudova',
-        'course' => 1,
-        'group' => 'AI-01',
-        'major' => 'Artificial Intelligence'
-    ]
 ];
