@@ -45,7 +45,11 @@ function son3($a, $b, $c)
     $min = kichik($a, kichik($b, $c));
     $orta = ($a + $b + $c) - ($min + $max);
 
-    return ["min" => $min, "orta" => $orta, "max" => $max];
+    return [
+        "min" => $min,
+        "orta" => $orta,
+        "max" => $max
+    ];
 }
 
 function tortburchak($a, $b)
@@ -70,6 +74,25 @@ function max_arr($arr)
     return ['max_element' => $max, 'max_index' => $index];
 }
 
+function juft_toq($arr)
+{
+    $juftlar = [];
+    $toqlar = [];
 
+    foreach ($arr as $son) {
+        if ($son % 2 == 0) {
+            array_push($juftlar, $son);
+        } else {
+            array_push($toqlar, $son);
+        }
+    }
+
+    return [
+        'juft' => $juftlar,
+        'toq' => $toqlar
+    ];
+}
+
+print_r(juft_toq([1, 2, 3, 4, 5, 6, 7, 8]));
 
 // uy ishi string, number, massif, bool bilan ishlaydigan funcsiyalar yozish
