@@ -2,5 +2,4 @@
 
 include 'math.php';
 
-echo modul(-3);
-
+echo doira_yuzi(2);

@@ -39,18 +39,37 @@ function kichik($a, $b)
     return $a < $b ? $a : $b;
 }
 
+function son3($a, $b, $c)
+{
+    $max = katta($a, katta($b, $c));
+    $min = kichik($a, kichik($b, $c));
+    $orta = ($a + $b + $c) - ($min + $max);
+
+    return ["min" => $min, "orta" => $orta, "max" => $max];
+}
+
+function tortburchak($a, $b)
+{
+    return [
+        'perimetr' => 2 * ($a + $b),
+        'yuza' => $a * $b
+    ];
+}
+
 function max_arr($arr)
 {
     $max = $arr[0];
     $index = 0;
 
-    foreach ($arr as $i => $a) {
-        if ($max < $a) {
-            $max = $a;
+    foreach ($arr as $i => $son) {
+        if ($max < $son) {
+            $max = $son;
             $index = $i;
         }
     }
     return ['max_element' => $max, 'max_index' => $index];
 }
+
+
 
 // uy ishi string, number, massif, bool bilan ishlaydigan funcsiyalar yozish
