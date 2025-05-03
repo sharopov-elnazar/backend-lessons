@@ -1,6 +1,14 @@
 <?php
 if (!file_exists("data.php")) {
-    echo "<div class='alert alert-danger text-center mt-5'>❌ Fayl mavjud emas!</div>";
+    echo "
+    <script>
+        Swal.fire({
+            icon: 'error',
+            title: '❌ Fayl mavjud emas!',
+            text: 'Data fayli topilmadi.',
+            showConfirmButton: true
+        });
+    </script>";
     exit;
 }
 
@@ -21,6 +29,9 @@ $data = include("data.php");
 
     <!-- Bootstrap Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body class="bg-light">
@@ -29,6 +40,11 @@ $data = include("data.php");
         <div class="card shadow-sm">
             <div class="card-header bg-primary text-white text-center">
                 <h4><i class="bi bi-people-fill"></i> Foydalanuvchilar ro'yxati</h4>
+            </div>
+            <div class="card-footer text-center">
+                <a href="./create.php" class="btn btn-outline-primary">
+                    <i class="bi bi-person-plus-fill"></i> Foydalanuvchi yaratish
+                </a>
             </div>
             <div class="card-body">
                 <table class="table table-bordered table-hover table-striped">
@@ -55,9 +71,8 @@ $data = include("data.php");
                                         class="btn btn-sm btn-warning">
                                         <i class="bi bi-pencil-square"></i> Tahrirlash
                                     </a>
-                                    <a href="delete.php?username=<?= urlencode($person['username']) ?>"
-                                        onclick="return confirm('O‘chirishga ishonchingiz komilmi?')"
-                                        class="btn btn-sm btn-danger">
+                                    <a href="javascript:void(0);" class="btn btn-sm btn-danger"
+                                        onclick="confirmDelete('<?= urlencode($person['username']) ?>')">
                                         <i class="bi bi-trash3-fill"></i> O‘chirish
                                     </a>
                                 </td>
@@ -66,15 +81,28 @@ $data = include("data.php");
                     </tbody>
                 </table>
             </div>
-            <div class="card-footer text-center">
-                <a href="./" class="btn btn-outline-primary">
-                    <i class="bi bi-house-door-fill"></i> Bosh sahifa
-                </a>
-            </div>
         </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        function confirmDelete(username) {
+            Swal.fire({
+                title: 'O‘chirishni tasdiqlaysizmi?',
+                text: username + ' foydalanuvchisini o‘chirishni istaysizmi?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Ha, o‘chirish',
+                cancelButtonText: 'Yo‘q, bekor qilish',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = 'delete.php?username=' + username;
+                }
+            });
+        }
+    </script>
 </body>
 
 </html>

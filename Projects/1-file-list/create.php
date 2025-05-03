@@ -26,7 +26,7 @@
                         <h4><i class="bi bi-person-plus-fill"></i> Ro'yxatdan o'tish</h4>
                     </div>
                     <div class="card-body">
-                        <form action="store.php" method="post">
+                        <form action="store.php">
                             <div class="mb-3">
                                 <label for="first_name" class="form-label">Ism</label>
                                 <input type="text" class="form-control" id="first_name" name="first_name" required>
@@ -55,7 +55,7 @@
                         </form>
                     </div>
                     <div class="card-footer text-center">
-                        <a href="./index.php" class="btn btn-outline-secondary">
+                        <a href="./" class="btn btn-outline-secondary">
                             <i class="bi bi-people-fill"></i> Odamlar ro'yxati
                         </a>
                     </div>
