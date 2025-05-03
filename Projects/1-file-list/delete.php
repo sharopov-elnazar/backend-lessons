@@ -1,29 +1,30 @@
 <?php
-if (!isset($_GET['username'])) {
-    echo "Username ko‘rsatilmagan!";
-    exit;
+
+$file = "data.php";
+
+// 1. Foydalanuvchi nomi tekshiruvi
+if (empty($_GET['username'])) {
+    exit("<div class='alert alert-warning'>⚠️ Username ko‘rsatilmagan!</div>");
 }
 
 $username = $_GET['username'];
-$file = "data.php";
 
+// 2. Fayl mavjudligini tekshirish
 if (!file_exists($file)) {
-    echo "Fayl topilmadi!";
-    exit;
+    exit("<div class='alert alert-danger'>🛑 Fayl topilmadi!</div>");
 }
 
+// 3. Ma'lumotlarni chaqirish
 $data = include($file);
 
-// Foydalanuvchini topib o‘chiramiz
-$new_data = array_filter($data, function ($user) use ($username) {
-    return $user['username'] !== $username;
-});
+// 4. Foydalanuvchini filtrlash orqali o‘chirish
+$data = array_filter($data, fn($user) => $user['username'] !== $username);
 
-// Faylga qaytadan yozamiz
-$content = "<?php\nreturn " . var_export(array_values($new_data), true) . ";\n";
-file_put_contents($file, $content);
+// 5. Indekslarni qayta tartibga solish va faylga yozish
+$updatedContent = "<?php\nreturn " . var_export(array_values($data), true) . ";\n";
+file_put_contents($file, $updatedContent);
 
-// Qaytaramiz
-header("Location: human-list.php");
+// 6. Redirect qilish
+header("Location: ./");
 exit;
 ?>
