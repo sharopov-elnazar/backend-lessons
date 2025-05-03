@@ -1,14 +1,12 @@
 <?php
-// Fayl mavjudligini tekshiramiz
 if (!file_exists("data.php")) {
     echo "Fayl topilmadi!";
     exit;
 }
 
-// Ma'lumotlarni yuklaymiz
 $data = include("data.php");
 
-// Username GET orqali kelganmi?
+// Username GET orqali keldi
 if (!isset($_GET['username'])) {
     echo "Username ko‘rsatilmagan!";
     exit;
@@ -17,7 +15,7 @@ if (!isset($_GET['username'])) {
 $username = $_GET['username'];
 $personToEdit = null;
 
-// Ma'lumotni topamiz
+// Topamiz
 foreach ($data as $index => $person) {
     if ($person['username'] === $username) {
         $personToEdit = $person;
@@ -26,34 +24,33 @@ foreach ($data as $index => $person) {
     }
 }
 
-// Agar topilmasa:
 if (!$personToEdit) {
     echo "Foydalanuvchi topilmadi!";
     exit;
 }
 
-// Formdan kelgan ma'lumotni saqlash
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $data[$personIndex]['first_name'] = htmlspecialchars($_POST['first_name']);
-    $data[$personIndex]['last_name'] = htmlspecialchars($_POST['last_name']);
-    $data[$personIndex]['age'] = (int) $_POST['age'];
+// Agar boshqa GET parametrlar ham bor bo‘lsa — tahrirlashni bajaramiz
+if (isset($_GET['first_name'], $_GET['last_name'], $_GET['age'])) {
+    $data[$personIndex]['first_name'] = htmlspecialchars($_GET['first_name']);
+    $data[$personIndex]['last_name'] = htmlspecialchars($_GET['last_name']);
+    $data[$personIndex]['age'] = (int) $_GET['age'];
 
-    // PHP faylga qayta yozamiz
     $phpCode = "<?php return " . var_export($data, true) . ";";
     file_put_contents("data.php", $phpCode);
 
-    echo "<p style='color:green'>Ma'lumotlar muvaffaqiyatli yangilandi! ✅</p>";
+    echo "<p style='color:green'>GET orqali ma'lumotlar yangilandi! ✅</p>";
     echo "<a href='human-list.php'>🔙 Orqaga</a>";
     exit;
 }
 ?>
 
-<h2>✏️ Foydalanuvchini tahrirlash: <?= $personToEdit['username'] ?></h2>
-<form method="post">
+<h2>✏️ GET orqali tahrirlash: <?= $personToEdit['username'] ?></h2>
+<form method="get">
+    <input type="hidden" name="username" value="<?= $personToEdit['username'] ?>">
     <label>Ism: <input type="text" name="first_name" value="<?= $personToEdit['first_name'] ?>"
             required></label><br><br>
     <label>Familiya: <input type="text" name="last_name" value="<?= $personToEdit['last_name'] ?>"
             required></label><br><br>
     <label>Yosh: <input type="number" name="age" value="<?= $personToEdit['age'] ?>" required></label><br><br>
-    <button type="submit">💾 Saqlash</button>
+    <button type="submit">💾 GET orqali saqlash</button>
 </form>
