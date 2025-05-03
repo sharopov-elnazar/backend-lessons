@@ -5,9 +5,6 @@ if (!file_exists("data.php")) {
 }
 
 $data = include("data.php");
-// echo "<pre>";
-// print_r($data);
-// echo "</pre>";
 
 echo "<table border='1' style='border-collapse: collapse; width: 100%;'>";
 echo "<tr>";
@@ -16,16 +13,26 @@ echo "<th>Ism</th>";
 echo "<th>Familiya</th>";
 echo "<th>Yosh</th>";
 echo "<th>Username</th>";
+echo "<th>Action</th>";
 echo "</tr>";
-echo "<tr>";
+
 foreach ($data as $index => $person) {
+    echo "<tr>";
     echo "<td>" . ($index + 1) . "</td>";
     echo "<td>" . $person['first_name'] . "</td>";
     echo "<td>" . $person['last_name'] . "</td>";
     echo "<td>" . $person['age'] . "</td>";
     echo "<td>" . $person['username'] . "</td>";
+    echo "<td>
+        <a href='delete.php?username=" . $person['username'] . "' onclick='return confirm(\"O‘chirishga ishonchingiz komilmi?\")'>🗑 O‘chirish</a>
+        |
+        <a href='edit.php?username=" . $person['username'] . "'>✏️ Tahrirlash</a>
+    </td>";
     echo "</tr>";
 }
+
+echo "</table>";
 ?>
 
-<a href="./">Bosh sahifa</a>
+<br>
+<a href="./">🏠 Bosh sahifa</a>
