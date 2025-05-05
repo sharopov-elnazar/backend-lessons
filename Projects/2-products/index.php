@@ -112,8 +112,10 @@
                                         class="fas fa-eye me-2"></i>Batafsil</a>
                                 <a href="edit-product.php?id=<?= $index ?>" class="btn btn-outline-warning btn-sm"><i
                                         class="fas fa-edit"></i></a>
-                                <a href="delete-product.php?id=<?= $index ?>" class="btn btn-outline-danger btn-sm"><i
-                                        class="fas fa-trash"></i></a>
+                                <a href="delete-product.php?id=<?= $index ?>" class="btn btn-outline-danger btn-sm"
+                                    onclick="return confirm('Aniq o‘chirasizmi?');">
+                                    <i class="fas fa-trash"></i>
+                                </a>
                             </div>
                         </div>
                     </div>

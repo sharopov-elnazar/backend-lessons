@@ -6,7 +6,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $imagePath = '';
 
     if (isset($_FILES['image']) && $_FILES['image']['error'] === 0) {
-        $imageName = time() . '_' . basename($_FILES['image']['name']);
+        $imageName = uniqid('product_') . md5(time() . rand()) . '.' . pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
         $tmpName = $_FILES['image']['tmp_name'];
         $uploadDir = __DIR__ . '/product-image/';
 
@@ -19,10 +19,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (move_uploaded_file($tmpName, $fullPath)) {
             $imagePath = 'product-image/' . $imageName;
         } else {
-            die("Error saving image!");
+            die("Rasmni saqlashda xato yuz berdi!");
         }
     } else {
-        die("No image selected or error occurred.");
+        die("Rasm tanlanmadi yoki xato yuz berdi.");
     }
 
     $new_entry = [
@@ -51,6 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     exit;
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="uz">
 

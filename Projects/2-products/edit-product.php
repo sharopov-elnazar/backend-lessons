@@ -16,11 +16,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($imageFile && $imageFile['error'] === UPLOAD_ERR_OK) {
         if (file_exists($imagePath)) {
-            unlink($imagePath);
+            unlink($imagePath);  // Old imageni o'chirish
         }
 
         $uploadDir = 'product-image/';
-        $newImageName = uniqid('product_') . '.' . pathinfo($imageFile['name'], PATHINFO_EXTENSION);
+        $newImageName = uniqid('product_') . md5(time() . rand()) . '.' . pathinfo($imageFile['name'], PATHINFO_EXTENSION);
         $imagePath = $uploadDir . $newImageName;
 
         if (!move_uploaded_file($imageFile['tmp_name'], $imagePath)) {
@@ -28,17 +28,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
+    // Mahsulotni yangilash
     $products[$id]['name'] = $_POST['name'];
     $products[$id]['description'] = $_POST['description'];
     $products[$id]['price'] = $_POST['price'];
     $products[$id]['image'] = $imagePath;
 
+    // Yangi ma'lumotlarni faylga saqlash
     file_put_contents('data.php', '<?php return ' . var_export($products, true) . ';');
 
-    header("Location: products.php");
+    header("Location: ./");
     exit;
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="uz">
 
