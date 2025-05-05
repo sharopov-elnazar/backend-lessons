@@ -16,63 +16,31 @@ $product = $products[$id];
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>📄 Mahsulot tafsilotlari</title>
-    <style>
-        body {
-            font-family: sans-serif;
-            background: #fafafa;
-            padding: 40px;
-        }
-
-        .product-card {
-            background: white;
-            padding: 30px;
-            max-width: 600px;
-            margin: auto;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-
-        img {
-            max-width: 100%;
-            border-radius: 10px;
-        }
-
-        h1 {
-            color: #2c3e50;
-        }
-
-        p {
-            font-size: 18px;
-        }
-
-        a {
-            display: inline-block;
-            margin-top: 20px;
-            background: #2ecc71;
-            color: white;
-            padding: 10px 15px;
-            text-decoration: none;
-            border-radius: 5px;
-        }
-
-        a:hover {
-            background: #27ae60;
-        }
-    </style>
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="https://iqbolshoh.uz/favicon.ico">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
-<body>
+<body class="bg-light py-5">
 
-    <div class="product-card">
-        <img src="<?= $product['image'] ?>" alt="<?= $product['name'] ?>">
-        <h1><?= $product['name'] ?></h1>
-        <p><?= $product['description'] ?></p>
-        <p><strong><?= $product['price'] ?> so‘m</strong></p>
-        <a href="products.php">⬅️ Ortga qaytish</a>
+    <div class="container">
+        <div class="card shadow-sm p-4 mx-auto" style="max-width: 600px;">
+            <img src="<?= $product['image'] ?>" alt="<?= $product['name'] ?>" class="card-img-top rounded-3">
+            <div class="card-body text-center">
+                <h1 class="card-title"><?= $product['name'] ?></h1>
+                <p class="card-text"><?= $product['description'] ?></p>
+                <p class="h5 text-primary"><?= $product['price'] ?> so‘m</p>
+                <a href="products.php" class="btn btn-success mt-3">⬅️ Ortga qaytish</a>
+            </div>
+        </div>
     </div>
 
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
 </body>
 
 </html>
