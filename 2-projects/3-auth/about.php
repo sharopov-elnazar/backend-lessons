@@ -1,11 +1,15 @@
 <?php
+// 🚦 Sessiyani boshlaymiz
 session_start();
 
-// Faqat login bo‘lganlar kira oladi
+// 🔒 Tizimga kirmagan foydalanuvchini login sahifasiga qaytaramiz
 if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
     header('Location: ./login/');
-    exit;
+    exit; // ⛔ Kodni to'xtatamiz, himoyalangan ma'lumotlarni ko'rsatmaymiz
 }
+
+// Bu yerda himoyalangan sahifa kontenti bo'ladi...
+// Faqat tizimga kirgan foydalanuvchilar ko'ra oladi
 ?>
 
 <!DOCTYPE html>

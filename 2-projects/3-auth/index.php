@@ -1,11 +1,15 @@
 <?php
+// 🚦 Sessiyani boshlaymiz
 session_start();
 
-// Faqat login bo‘lganlar kira oladi
+// 🔒 Tizimga kirmagan foydalanuvchini login sahifasiga qaytaramiz
 if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
     header('Location: ./login/');
-    exit;
+    exit; // ⛔ Kodni to'xtatamiz, himoyalangan ma'lumotlarni ko'rsatmaymiz
 }
+
+// Bu yerda himoyalangan sahifa kontenti bo'ladi...
+// Faqat tizimga kirgan foydalanuvchilar ko'ra oladi
 ?>
 
 <!DOCTYPE html>
@@ -14,14 +18,16 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://iqbolshoh.uz" type="image/x-icon">
     <title>Bosh sahifa</title>
 </head>
 
 <body>
 
-    <h1>Salom <?= $_SESSION['name'] ?>.</h1>
-    <h1>username: <?= $_SESSION['username'] ?>.</h1>
+    <h1>Salom, <?= $_SESSION['username'] ?>!</h1>
+
     <a href="./logout/">Chiqish</a>
+
 </body>
 
 </html>
