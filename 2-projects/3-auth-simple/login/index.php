@@ -3,7 +3,11 @@
 session_start();
 
 // 📂 Foydalanuvchi ma'lumotlarini fayldan olamiz (data.php faylida saqlangan)
-$USER_DATA = include '../user-data.php';
+$USER_DATA = [
+    'name'        => 'Iqbolshoh Ilhomjonov',
+    'username'    => 'iqbolshoh',
+    'password'    => 'IQBOLSHOH'
+];
 
 // 🔍 Agar foydalanuvchi allaqachon tizimga kirgan bo'lsa, asosiy sahifaga yo'naltiramiz
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
@@ -25,6 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
             // ✅ Kirish muvaffaqiyatli - sessiyaga ma'lumotlarni saqlaymiz
             $_SESSION['loggedin'] = true;
+            $_SESSION['name'] = $USER_DATA['name'];
             $_SESSION['username'] = $USER_DATA['username'];
 
             // 🏠 Asosiy sahifaga yo'naltiramiz
