@@ -1,12 +1,13 @@
 <?php
 session_start();
 
+// Faqat login bo‘lganlar kira oladi
 if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
     header('Location: ./login/');
     exit;
 }
-
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
