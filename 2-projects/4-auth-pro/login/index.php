@@ -3,7 +3,7 @@
 session_start();
 
 // 📂 Foydalanuvchi ma'lumotlarini fayldan olamiz (data.php faylida saqlangan)
-$USER_DATA = include '../data.php';
+$USER_DATA = include '../user-data.php';
 
 // 🔍 Agar foydalanuvchi allaqachon tizimga kirgan bo'lsa, asosiy sahifaga yo'naltiramiz
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
