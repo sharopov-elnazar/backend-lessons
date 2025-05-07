@@ -50,30 +50,25 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/login.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <title>Login</title>
+    <title>Kirish</title>
 </head>
 
 <body>
+
     <form action="" method="POST">
-        <div class="form-header">
-            <h1>Login to Your Account</h1>
-        </div>
-        <p class="error-message"><?php if (isset($error)) echo htmlspecialchars($error); ?></p>
-        <div class="input-group">
-            <label for="username">Username</label>
-            <input type="text" id="username" name="username" placeholder="Enter your username" required>
-        </div>
-        <div class="input-group">
-            <label for="password">Password</label>
-            <input type="password" id="password" name="password" placeholder="Enter your password" required>
-            <button type="button" class="toggle-password" aria-label="Toggle password visibility">
-                <i class="fas fa-eye"></i>
-            </button>
-        </div>
-        <button type="submit">Sign In</button>
+        <h1>Kirish</h1>
+
+        <input type="text" id="username" name="username" placeholder="Usernameni kiriting" required>
+
+        <input type="password" id="password" name="password" placeholder="Parolni kiriting" required>
+        <button type="button" class="toggle-password">
+            <i class="fas fa-eye"></i>
+        </button>
+
+        <button type="submit">Kirish</button>
     </form>
+
     <script>
         document.querySelector('.toggle-password').addEventListener('click', function() {
             const passwordInput = document.getElementById('password');

@@ -1,40 +1,28 @@
 <?php
-// 🚀 Sessiyani boshlaymiz - bu har bir sahifada birinchi bo'lib chaqirilishi kerak
 session_start();
 
-// 📂 Foydalanuvchi ma'lumotlarini fayldan olamiz (data.php faylida saqlangan)
 $USER_DATA = include '../user-data.php';
 
-// 🔍 Agar foydalanuvchi allaqachon tizimga kirgan bo'lsa, asosiy sahifaga yo'naltiramiz
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
     header('Location: ../');
-    exit; // ⛔ Kodni to'xtatamiz, keyingi qismlar ishlamasin
+    exit;
 }
 
-// 📨 POST so'rovini tekshiramiz (forma to'ldirilganda)
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
-
-    // 🔎 Forma maydonlari to'ldirilganligini tekshiramiz
     if (!empty($_POST['username']) && !empty($_POST['password'])) {
+        $username = strtolower($_POST['username']);
+        $password = $_POST['password'];
 
-        $username = strtolower($_POST['username']); // Usernameni kichik harflarga aylantiramiz
-        $password = $_POST['password']; // Parolni olamiz
-
-        // 🔑 Foydalanuvchi ma'lumotlarini tekshiramiz
         if ($USER_DATA['username'] == $username && $USER_DATA['password'] == $password) {
-
-            // ✅ Kirish muvaffaqiyatli - sessiyaga ma'lumotlarni saqlaymiz
             $_SESSION['loggedin'] = true;
             $_SESSION['username'] = $USER_DATA['username'];
-
-            // 🏠 Asosiy sahifaga yo'naltiramiz
             header('Location: ../');
             exit;
         } else {
-            echo "❌ Parol yoki username noto'g'ri!"; // ⚠️ Xato xabari
+            echo "Invalid username or password!";
         }
     } else {
-        echo "⚠️ Iltimos, barcha maydonlarni to'ldiring!"; // ⚠️ Ogohlantirish
+        echo "Please fill in all fields!";
     }
 }
 ?>
@@ -55,17 +43,18 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         <div class="form-header">
             <h1>Login to Your Account</h1>
         </div>
-        <p class="error-message"><?php if (isset($error)) echo htmlspecialchars($error); ?></p>
         <div class="input-group">
             <label for="username">Username</label>
             <input type="text" id="username" name="username" placeholder="Enter your username" required>
         </div>
         <div class="input-group">
             <label for="password">Password</label>
-            <input type="password" id="password" name="password" placeholder="Enter your password" required>
-            <button type="button" class="toggle-password" aria-label="Toggle password visibility">
-                <i class="fas fa-eye"></i>
-            </button>
+            <div>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                <button type="button" class="toggle-password">
+                    <i class="fas fa-eye"></i>
+                </button>
+            </div>
         </div>
         <button type="submit">Sign In</button>
     </form>
