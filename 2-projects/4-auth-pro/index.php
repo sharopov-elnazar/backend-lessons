@@ -19,7 +19,7 @@ $userData = include './user-data.php';
     <link rel="icon" href="https://iqbolshoh.uz" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./src/css/dashboard.css">
 </head>
 
 <body>
@@ -56,7 +56,7 @@ $userData = include './user-data.php';
 
     <main>
         <section class="hero">
-            <img src="<?= htmlspecialchars($userData['image']) ?>" alt="Profile image" class="profile-img">
+            <img src="./src/<?= htmlspecialchars($userData['image']) ?>" alt="Profile image" class="profile-img">
             <h1>Welcome, <?= htmlspecialchars(explode(' ', $userData['name'])[0]) ?>! 👋</h1>
             <p class="subtitle">You're now logged in to your personal dashboard</p>
         </section>
