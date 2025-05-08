@@ -6,7 +6,7 @@ session_start();
 $USER_DATA = [
     'name'        => 'Iqbolshoh Ilhomjonov',
     'username'    => 'iqbolshoh',
-    'password'    => 'IQBOLSHOH'
+    'password'    => 'f46b3a2625246a83de76a47c15a90066'
 ];
 
 // 🔍 Agar foydalanuvchi allaqachon tizimga kirgan bo'lsa, asosiy sahifaga yo'naltiramiz
@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     if (!empty($_POST['username']) && !empty($_POST['password'])) {
 
         $username = strtolower($_POST['username']); // Usernameni kichik harflarga aylantiramiz
-        $password = $_POST['password']; // Parolni olamiz
+        $password = md5($_POST['password']); // Parolni olamiz
 
         // 🔑 Foydalanuvchi ma'lumotlarini tekshiramiz
         if ($USER_DATA['username'] == $username && $USER_DATA['password'] == $password) {

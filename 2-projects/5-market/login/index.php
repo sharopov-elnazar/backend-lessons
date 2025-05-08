@@ -1,10 +1,10 @@
 <?php
 session_start();
 
-$USER_DATA = include '../user-data.php';
+$USER_DATA = include "../data/user.php";
 
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
-    header('Location: ../');
+    header('Location: ../admin/');
     exit;
 }
 
@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         if ($USER_DATA['username'] == $username && $USER_DATA['password'] == $password) {
             $_SESSION['loggedin'] = true;
             $_SESSION['username'] = $USER_DATA['username'];
-            header('Location: ../');
+            header('Location: ../admin/');
             exit;
         } else {
             echo "Invalid username or password!";

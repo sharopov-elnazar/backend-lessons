@@ -1,4 +1,4 @@
-<?php $products = include "./data/products.php"; ?>
+<?php $products = include "../data/products.php"; ?>
 <!DOCTYPE html>
 <html lang="uz">
 
@@ -96,11 +96,13 @@
         <h1><i class="fas fa-box-open me-2"></i>Mahsulotlar ro'yxati</h1>
     </header>
     <div class="container py-5">
+        <a href="./create.php" class="btn btn-outline-primary mb-4 rounded-pill"><i class="fas fa-plus me-2"></i>Yangi
+            mahsulot</a>
         <div class="row row-cols-1 row-cols-md-3 g-4">
             <?php foreach ($products as $index => $product): ?>
                 <div class="col">
                     <div class="card h-100">
-                        <img src="./src/images/product-image/<?= $product['image'] ?>" class="card-img-top" alt="<?= $product['name'] ?>">
+                        <img src="../src/images/product-image/<?= $product['image'] ?>" class="card-img-top" alt="<?= $product['name'] ?>">
                         <div class="card-body">
                             <h5 class="card-title fw-bold"><?= $product['name'] ?></h5>
                             <p class="card-text text-muted"><?= $product['description'] ?></p>
@@ -108,6 +110,12 @@
                             <div class="btn-group d-flex">
                                 <a href="product-details.php?id=<?= $index ?>" class="btn btn-primary btn-sm flex-grow-1"><i
                                         class="fas fa-eye me-2"></i>Batafsil</a>
+                                <a href="edit-product.php?id=<?= $index ?>" class="btn btn-outline-warning btn-sm"><i
+                                        class="fas fa-edit"></i></a>
+                                <a href="delete-product.php?id=<?= $index ?>" class="btn btn-outline-danger btn-sm"
+                                    onclick="return confirm('Aniq o‘chirasizmi?');">
+                                    <i class="fas fa-trash"></i>
+                                </a>
                             </div>
                         </div>
                     </div>
