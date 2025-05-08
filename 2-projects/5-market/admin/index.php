@@ -33,7 +33,6 @@ $userData = include '../data/user.php';
                         Products
                     </a>
 
-
                     <a href="#" class="btn btn-primary" id="logout-btn">
                         <i class="fas fa-sign-out-alt"></i> Logout
                     </a>

@@ -96,7 +96,7 @@ $product = $products[$id];
                 <h1 class="card-title"><?= $product['name'] ?></h1>
                 <p class="card-text text-muted"><?= $product['description'] ?></p>
                 <p class="h5 text-primary fw-bold"><?= $product['price'] ?> so'm</p>
-                <a href="./" class="btn btn-success mt-3"><i class="fas fa-arrow-left me-2"></i>Ortga
+                <a href="./products.php" class="btn btn-success mt-3"><i class="fas fa-arrow-left me-2"></i>Ortga
                     qaytish</a>
             </div>
         </div>

@@ -9,22 +9,25 @@ if (!isset($products[$id])) {
 }
 
 $product = $products[$id];
+$newImageName = $product['image']; // Default ba imagei qablī
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $imageFile = $_FILES['image'] ?? null;
-    $imagePath = $product['image'];
 
     if ($imageFile && $imageFile['error'] === UPLOAD_ERR_OK) {
-        if (file_exists($imagePath)) {
-            unlink($imagePath);  // Old imageni o'chirish
+        // Old rasmi delete kun
+        $oldImagePath = "../src/images/product-image/" . $product['image'];
+        if (file_exists($oldImagePath)) {
+            unlink($oldImagePath);
         }
 
         $uploadDir = '../src/images/product-image/';
-        $newImageName = uniqid('product_') . md5(time() . rand()) . '.' . pathinfo($imageFile['name'], PATHINFO_EXTENSION);
-        $imagePath = $uploadDir . $newImageName;
+        $newImageName = uniqid('product_') . '_' . md5(time() . rand()) . '.' . pathinfo($imageFile['name'], PATHINFO_EXTENSION);
+        $newImagePath = $uploadDir . $newImageName;
 
-        if (!move_uploaded_file($imageFile['tmp_name'], $imagePath)) {
+        if (!move_uploaded_file($imageFile['tmp_name'], $newImagePath)) {
             echo "Yangi rasmni yuklashda xato yuz berdi.";
+            exit;
         }
     }
 
@@ -32,12 +35,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $products[$id]['name'] = $_POST['name'];
     $products[$id]['description'] = $_POST['description'];
     $products[$id]['price'] = $_POST['price'];
-    $products[$id]['image'] = $imagePath;
+    $products[$id]['image'] = $newImageName;
 
-    // Yangi ma'lumotlarni faylga saqlash
-    file_put_contents('data.php', '<?php return ' . var_export($products, true) . ';');
+    file_put_contents('../data/products.php', '<?php return ' . var_export($products, true) . ';');
 
-    header("Location: ./");
+    header("Location: ./products.php");
     exit;
 }
 ?>

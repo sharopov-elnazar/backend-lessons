@@ -6,18 +6,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $imagePath = '';
 
     if (isset($_FILES['image']) && $_FILES['image']['error'] === 0) {
-        $imageName = uniqid('product_') . md5(time() . rand()) . '.' . pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
         $tmpName = $_FILES['image']['tmp_name'];
-        $uploadDir = __DIR__ . '/product-image/';
+
+        $uploadDir = '../src/images/product-image/';
+        $imageName = uniqid('product_') . '_' . md5(time() . rand()) . '.' . pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
+        $fullPath = $uploadDir . $imageName;
 
         if (!is_dir($uploadDir)) {
             mkdir($uploadDir, 0755, true);
         }
 
-        $fullPath = $uploadDir . $imageName;
-
         if (move_uploaded_file($tmpName, $fullPath)) {
-            $imagePath = 'product-image/' . $imageName;
+            $imagePath = $imageName;
         } else {
             die("Rasmni saqlashda xato yuz berdi!");
         }
@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'image' => $imagePath,
     ];
 
-    $file_path = __DIR__ . "/data.php";
+    $file_path = "../data/products.php";
     $old_data = [];
 
     if (file_exists($file_path)) {
@@ -47,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $new_content = "<?php\nreturn " . var_export($old_data, true) . ";\n";
     file_put_contents($file_path, $new_content);
 
-    header("Location: ./");
+    header("Location: ./products.php");
     exit;
 }
 ?>
