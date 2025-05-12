@@ -1,5 +1,5 @@
 <?php
-$products = include "./data/products.php";
+$products = include "../data/products.php";
 
 $id = $_GET['id'] ?? null;
 
@@ -91,12 +91,12 @@ $product = $products[$id];
     </header>
     <div class="container py-5">
         <div class="card">
-            <img src="./src/images/product-image/<?= $product['image'] ?>" alt="<?= $product['name'] ?>" class="card-img-top">
+            <img src="../src/images/product-image/<?= $product['image'] ?>" alt="<?= $product['name'] ?>" class="card-img-top">
             <div class="card-body text-center">
                 <h1 class="card-title"><?= $product['name'] ?></h1>
                 <p class="card-text text-muted"><?= $product['description'] ?></p>
                 <p class="h5 text-primary fw-bold"><?= $product['price'] ?> so'm</p>
-                <a href="./" class="btn btn-success mt-3"><i class="fas fa-arrow-left me-2"></i>Ortga
+                <a href="./products.php" class="btn btn-success mt-3"><i class="fas fa-arrow-left me-2"></i>Ortga
                     qaytish</a>
             </div>
         </div>
