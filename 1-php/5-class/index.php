@@ -1,33 +1,40 @@
 <?php
 
-class Human
+abstract class Odam
 {
     public $name;
-    private $age;
+    public $age;
 
-    public function __construct($name, $age)
+    public function getName()
     {
-        $this->name = $name;
-        $this->age = $age;
+        return $this->name;
     }
 
     public function getAge()
     {
         return $this->age;
     }
-
-    public function __destruct()
-    {
-        echo "Object {$this->name} is destroyed\n";
-    }
 }
 
-$human = new Human('Elnazar', 30);
-$human2 = new Human('Azizbek', 25);
+class Talaba extends Odam
+{
+    public $yonalish;
+    public $kurs;
+}
 
-print_r($human);
+class Ishchi extends Odam
+{
+    public $soha;
+}
 
-echo $human->name . " " . $human->getAge();
+class Dasturchi extends Odam
+{
+    public $daromadi;
+}
 
-// 5 ta class yaratish
-// 3 ta xudusiyat 4 ta metod
+$talaba = new Talaba();
+$ishchi = new Ishchi();
+$dasturchi = new Dasturchi();
+
+
+
