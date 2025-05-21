@@ -10,12 +10,12 @@
 /*----------------------------------------
 | 1. MYSQL BAZASIGA ULANISH
 |----------------------------------------*/
-$host = "localhost";
-$user = "root";
-$password = "";
-$database = "hemis";
+define("DB_SERVER", "localhost");
+define("DB_USERNAME", "root");
+define("DB_PASSWORD", "");
+define("DB_NAME", "hemis");
 
-$conn = mysqli_connect($host, $user, $password, $database);
+$conn = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
 
 if (!$conn) {
     die("❌ Baza bilan ulanishda xatolik: " . mysqli_connect_error());
